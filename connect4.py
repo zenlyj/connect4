@@ -203,7 +203,11 @@ def startGame():
     while(findWinner(grid) == None):
         if playerTurn:
             printGrid(grid)
-            dropPiece(PLAYER_VAL, grid, getUserInput())
+            selectedCol = getUserInput()
+            if not isValidMove(grid, selectedCol): 
+                print("Column is filled!")
+                continue
+            dropPiece(PLAYER_VAL, grid, selectedCol)
         else:
             dropPiece(AI_VAL, grid, miniMax(grid, START_DEPTH, True, -math.inf, math.inf))
         playerTurn = not playerTurn
