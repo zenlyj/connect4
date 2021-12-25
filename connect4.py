@@ -160,6 +160,12 @@ def evalGrid(grid):
 def isValidMove(grid, yIndex):
     return grid[0][yIndex] == DEFAULT_VAL
 
+def isBoardFull(grid):
+    for y in range(NUM_COLS):
+        if isValidMove(grid, y):
+            return False
+    return True
+
 def moveExplorationSequence():
     # explore from center column to edge columns 
     sequence = []
@@ -204,7 +210,7 @@ def miniMax(grid, depth, isMaximizing, alpha, beta):
 def startGame():
     grid = initGrid()
     playerTurn = True
-    while(findWinner(grid) == None):
+    while(findWinner(grid) == None and isBoardFull(grid) == False):
         if playerTurn:
             printGrid(grid)
             selectedCol = getUserInput()
