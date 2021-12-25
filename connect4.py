@@ -211,5 +211,7 @@ def startGame():
         else:
             dropPiece(AI_VAL, grid, miniMax(grid, START_DEPTH, True, -math.inf, math.inf))
         playerTurn = not playerTurn
+    if playerTurn: printGrid(grid)
+    print("Game Over!")
 
 startGame()
