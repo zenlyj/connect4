@@ -93,13 +93,17 @@ def windowScore(w, x, y, z):
     aiCount = window.count(AI_VAL)
     playerCount = window.count(PLAYER_VAL)
     if aiCount == 4:
-        windowScore += 1000
+        windowScore += 100000000
     elif aiCount == 3 and emptyCount == 1:
         windowScore += 5
     elif aiCount == 2 and emptyCount == 2:
         windowScore += 2
-    if playerCount == 3 and emptyCount == 1:
+    if playerCount == 4:
+        windowScore -= 100000000
+    elif playerCount == 3 and emptyCount == 1:
         windowScore -= 4
+    elif playerCount == 2 and emptyCount == 2:
+        windowScore -= 1
     return windowScore
 
 def horizontalScore(grid):
@@ -211,7 +215,7 @@ def startGame():
         else:
             dropPiece(AI_VAL, grid, miniMax(grid, START_DEPTH, True, -math.inf, math.inf))
         playerTurn = not playerTurn
-    if playerTurn: printGrid(grid)
+    printGrid(grid)
     print("Game Over!")
 
 startGame()
